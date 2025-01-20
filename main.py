@@ -1,4 +1,4 @@
-from task_manager import add_task, list_tasks, update_task, delete_task
+from task_manager.task_manager import add_task, list_tasks, update_task, delete_task
 
 # Добавление задачи
 add_task("Позвонить другу", "Обсудить проект")
@@ -7,7 +7,7 @@ add_task("Позвонить другу", "Обсудить проект")
 update_task(1, title="Купить продукты и воду")
 
 # Удаление задачи
-delete_task(2)
+# delete_task(2)
 
 # Просмотр задач
 print(list_tasks())
