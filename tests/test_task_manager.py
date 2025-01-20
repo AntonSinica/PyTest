@@ -1,6 +1,6 @@
 import pytest
 import os
-from task_manager import add_task, list_tasks, update_task, delete_task, load_tasks, save_tasks
+from task_manager.task_manager import add_task, list_tasks, update_task, delete_task, load_tasks, save_tasks
 
 
 @pytest.fixture
@@ -89,3 +89,12 @@ def test_delete_task_not_found(setup_tasks):
     with pytest.raises(ValueError) as exc_info:
         delete_task(999)  # ID, которого нет в списке
     assert str(exc_info.value) == "Задача с ID 999 не найдена."
+
+def test_update_task_description_only(setup_tasks):
+    # Обновляем только описание задачи
+    updated_task = update_task(1, description="Молоко, хлеб, яйца, вода")
+    assert updated_task["description"] == "Молоко, хлеб, яйца, вода"
+
+    # Проверяем, что задача обновлена в списке
+    tasks = list_tasks()
+    assert tasks[0]["description"] == "Молоко, хлеб, яйца, вода"

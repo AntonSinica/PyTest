@@ -50,4 +50,3 @@ def delete_task(task_id):
             save_tasks(tasks)
             return
     raise ValueError(f"Задача с ID {task_id} не найдена.")
-
