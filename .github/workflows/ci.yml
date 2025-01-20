@@ -1,0 +1,25 @@
+name: CI
+
+on: [push]  # Запускать workflow при каждом push в репозиторий
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
+
+    steps:
+      # Шаг 1: Получить код из репозитория
+      - uses: actions/checkout@v2
+
+      # Шаг 2: Установить Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.13'  # Указываем версию Python
+
+      # Шаг 3: Установить зависимости
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Шаг 4: Запустить тесты
+      - name: Run tests
+        run: pytest tests/ --cov=task_manager --cov-report=term-missing
